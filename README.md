@@ -3,5 +3,7 @@
 
 # 02 Precvičovanie SQLLite
 
-# 03 Téma
+# 03 Test SQL
 - [test](https://forms.cloud.microsoft/e/tkEvvQzCe9)
+
+# 04 Číselník

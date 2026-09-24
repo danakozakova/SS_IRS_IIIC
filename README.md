@@ -7,4 +7,4 @@
 - [test](https://forms.cloud.microsoft/e/tkEvvQzCe9)
 
 # 04 Číselník
-- [vytvor si tabulku hier v sqliteonline](IRS_04_ciselnik-zanre_zadanie.md)
+- [vytvor si tabulku hier v sqliteonline](IRS_02_model-a-select_riesenie.sql)

@@ -7,7 +7,7 @@
 - [test](https://forms.cloud.microsoft/e/tkEvvQzCe9)
 
 # 04 Číselník
-- [vytvor si tabulku hier v sqliteonline](IRS_02_model-a-select_data.sql)
+- [tabulka hry](IRS_02_model-a-select_data.sql)
 
 # TEST
 - https://forms.cloud.microsoft/e/JPqaFnXCRy

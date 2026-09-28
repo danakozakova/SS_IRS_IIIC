@@ -16,14 +16,25 @@ Spravíme si to v **Exceli**.
 
 **3.** Pozri stĺpec `zaner`. Vypíš, ktoré žánre sa **opakujú**. Koľko rôznych žánrov je?
 
-**4.** Na nový hárok sprav **číselník** `zanre` s dvoma stĺpcami: `id_zanru`, `nazov_zanru`.
-Každý žáner zapíš **len raz** a daj mu poradové id (1, 2, 3, …).
+**4.** Na nový hárok sprav **číselník** `zanre` s dvoma stĺpcami — **v tomto poradí**:
+`nazov_zanru` (vľavo), potom `id_zanru` (vpravo). Každý žáner zapíš **len raz** a daj mu poradové id (1, 2, 3, …).
 
-**5.** Vráť sa do tabuľky `hry`: pridaj stĺpec `zaner_id` a ku každej hre doplň **id jej žánru**
-podľa číselníka (ručne alebo cez `VLOOKUP`/`XLOOKUP`). Pôvodný textový `zaner` potom môžeš skryť/zmazať.
+> **Prečo názov vľavo?** Funkcia `VLOOKUP` hľadá hodnotu vždy v **prvom (ľavom) stĺpci** tabuľky
+> a vracia hodnotu zo stĺpca **vpravo**. My budeme hľadať žáner podľa **názvu** a chceme jeho **id**,
+> takže názov musí byť v prvom stĺpci a id napravo.
 
-**6.** Výsledok: máš **dve tabuľky** — `zanre` (id + názov) a `hry` (… + `zaner_id`).
+**5.** Vráť sa do tabuľky `hry`: pridaj stĺpec `zaner_id` a ku každej hre doplň **id jej žánru** —
+cez `=VLOOKUP(zaner; zanre; 2; NEPRAVDA)` (nájde názov žánru v číselníku a vráti jeho id) alebo ručne.
+Pôvodný textový `zaner` potom môžeš skryť/zmazať.
+
+**6.** Výsledok: máš **dve tabuľky** — `zanre` (názov + id) a `hry` (… + `zaner_id`).
 `zaner_id` v `hry` **ukazuje** na `id_zanru` v `zanre`.
+
+## Naming — ako pomenúvať tabuľky a stĺpce
+- malé písmená, **bez diakritiky a medzier** (`nazov_zanru`, nie `Názov žánru`)
+- viacslovné názvy spájaj podčiarkovníkom `_` (`zaner_id`, `id_zanru`)
+- **primárny kľúč** pomenuj zrozumiteľne (`id_zanru`), **cudzí kľúč** podľa toho, na čo ukazuje (`zaner_id`)
+- pomenúvaj **konzistentne** — rovnaký štýl vo všetkých tabuľkách
 
 ## Zamysli sa
 - Čo sme týmto **získali**? (koľkokrát je teraz uložený názov žánru „RPG"?)

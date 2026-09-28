@@ -8,3 +8,8 @@
 
 # 04 Číselník
 - [vytvor si tabulku hier v sqliteonline](IRS_02_model-a-select_data.sql)
+
+# 05 Číselník - pokračujeme
+
+# 06 TO BE
+http://10.37.255.249/

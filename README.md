@@ -10,7 +10,7 @@
 - [tabulka hry](IRS_02_model-a-select_data.sql)
 
 # TEST
-- https://forms.cloud.microsoft/e/JPqaFnXCRy
+- https://forms.cloud.microsoft/e/THejyfkzpD
 
 DROP TABLE IF EXISTS notebooky;
 CREATE TABLE notebooky (id INTEGER PRIMARY KEY, model TEXT, znacka TEXT, kategoria TEXT,

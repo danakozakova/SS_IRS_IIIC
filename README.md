@@ -31,5 +31,7 @@ INSERT INTO notebooky VALUES
 
 # 05 Číselník - pokračujeme
 
-# 06 TO BE
+# 06 Daj dokopy tabuľku faktúr
+
+
 http://10.37.255.249/

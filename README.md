@@ -32,7 +32,6 @@ INSERT INTO notebooky VALUES
 # 05 Číselník - pokračujeme
 
 # 06 Daj dokopy tabuľku faktúr
-- odovzdanie: https://spstv-my.sharepoint.com/:f:/g/personal/dana_kozakova_strednaskolats_sk/IgDsxMPnqbwFTJPUVChxIoVIAS_GODta5p8plpT5OtHy5Rk
 
 
 http://10.37.255.249/

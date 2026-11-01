@@ -33,5 +33,8 @@ INSERT INTO notebooky VALUES
 
 # 06 Daj dokopy tabuľku faktúr
 
+# 07 ERD diagram
+
+https://forms.cloud.microsoft/e/rDaWXr3PKu
 
 http://10.37.255.249/

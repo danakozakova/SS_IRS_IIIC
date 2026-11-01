@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IRS — ERD a dátový model (zadanie)</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f8fafc; color: #1e293b; font-size: 20px; line-height: 1.7; }
+
+    nav { position: sticky; top: 0; background: #1e1b4b; color: white; display: flex; gap: .25rem; padding: .6rem 2rem; flex-wrap: wrap; z-index: 100; align-items: center; }
+    nav strong { color: white; margin-right: .5rem; }
+    nav a { color: #a5b4fc; text-decoration: none; font-size: .85rem; padding: .3rem .9rem; border-radius: .25rem; }
+    nav a:hover { background: #312e81; color: white; }
+
+    section { max-width: 980px; margin: 0 auto; padding: 3rem 2rem 2.5rem; border-bottom: 1px solid #e2e8f0; }
+    section:last-child { border-bottom: none; }
+
+    h1 { font-size: 2.2rem; color: #1e1b4b; margin-bottom: .5rem; }
+    h2 { font-size: 1.8rem; color: #312e81; margin-bottom: 1.2rem; padding-bottom: .5rem; border-bottom: 2px solid #e0e7ff; }
+    h3 { font-size: 1.25rem; color: #4338ca; margin: 1.75rem 0 .6rem; }
+    p  { margin-bottom: .85rem; }
+    ul, ol { margin: .5rem 0 .85rem 1.5rem; }
+    li { margin-bottom: .5rem; }
+
+    code { background: #e0e7ff; color: #3730a3; padding: .15rem .5rem; border-radius: .3rem; font-size: .88em; font-family: 'Cascadia Code', 'Fira Code', monospace; }
+
+    .info  { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1rem 1.5rem; border-radius: 0 .5rem .5rem 0; margin: 1rem 0; }
+    .otazka { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 1rem 1.5rem; border-radius: 0 .5rem .5rem 0; margin: 1rem 0; }
+    .otazka strong { color:#b45309; }
+
+    .uloha { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 1.1rem 1.6rem; border-radius: 0 .75rem .75rem 0; margin: 1.2rem 0; }
+    .uloha h3 { margin-top:0; color:#15803d; }
+
+    .kresli { background: #ede9fe; border: 2px dashed #7c3aed; padding: 1.1rem 1.6rem; border-radius: .75rem; margin: 1.2rem 0; }
+    .kresli h3 { margin-top:0; color:#6d28d9; }
+    .kresli ol { margin-bottom:0; }
+
+    table.db { width: 100%; border-collapse: collapse; margin: 1rem 0 .4rem; font-size: .92rem; }
+    table.db caption { text-align:left; font-weight:700; color:#1e1b4b; font-family:'Cascadia Code','Fira Code',monospace; margin-bottom:.35rem; font-size:1rem; }
+    table.db th { background: #312e81; color: white; padding: .5rem .8rem; text-align: left; font-family:'Cascadia Code','Fira Code',monospace; font-size:.85rem; }
+    table.db td { padding: .45rem .8rem; border-bottom: 1px solid #e2e8f0; font-family:'Cascadia Code','Fira Code',monospace; font-size:.85rem; }
+    table.db tr:nth-child(even) td { background: #f8fafc; }
+
+    .legenda { width:100%; border-collapse:collapse; margin:1rem 0; font-size:.95rem; }
+    .legenda th { background:#312e81; color:white; padding:.6rem 1rem; text-align:left; }
+    .legenda td { padding:.55rem 1rem; border-bottom:1px solid #e2e8f0; vertical-align:middle; }
+    .legenda tr:nth-child(even) td { background:#f8fafc; }
+
+    .placeholder { background:#fafafa; border:2px dashed #cbd5e1; border-radius:.75rem; padding:3.5rem 1rem; margin:1.2rem 0; text-align:center; color:#94a3b8; font-size:1.05rem; }
+
+    .pill { display:inline-block; background:#1e1b4b; color:white; border-radius:999px; padding:.1rem .7rem; font-size:.8rem; font-weight:700; }
+    .meno { color:#6b7280; font-size:.95rem; margin:1rem 0 0; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <strong>IRS · ERD — zadanie</strong>
+  <a href="#ciel">Čo spravíš</a>
+  <a href="#tabulky">Naše tabuľky</a>
+  <a href="#nesedi">Čo nesedí</a>
+  <a href="#model">Opravený model</a>
+  <a href="#kresli">Nakresli (Chen)</a>
+  <a href="#pl">Pracovný list</a>
+</nav>
+
+
+<!-- ══ ÚVOD ══ -->
+<section id="ciel">
+  <p style="color:#6b7280; font-size:.9rem; margin-bottom:.5rem">IRS · III.C · 1. skupina · zadanie</p>
+  <h1>Dátový model a ER diagram</h1>
+  <p style="color:#4338ca; font-size:1.1rem">Z projektu <em>Evidencia faktúr</em> spravíme poriadny dátový model a nakreslíme ho ako ER diagram v <strong>Chen notácii</strong> (draw.io).</p>
+
+  <div class="info">
+    <strong>Dnes zvládneš:</strong> pomenovať PK, FK a doménu na našich tabuľkách · nájsť, kde sa dáta zbytočne opakujú · opraviť model na 4 tabuľky · nakresliť ho v Chen notácii.
+  </div>
+
+  <p class="meno">Meno: ______________________  Trieda: ________</p>
+</section>
+
+
+<!-- ══ 1  NAŠE TABUĽKY ══ -->
+<section id="tabulky">
+  <h2>1 · Čo už máme — tri tabuľky</h2>
+  <p>V projekte sme z jednej veľkej tabuľky spravili tri hárky. Pozri sa na ne ako na databázu.</p>
+
+  <table class="db">
+    <caption>zakaznik</caption>
+    <tr><th>id</th><th>meno</th><th>email</th><th>adresa</th></tr>
+    <tr><td>1</td><td>Pekáreň Oravan s.r.o.</td><td>info@oravan.sk</td><td>Hlavná 12, Námestovo</td></tr>
+    <tr><td>2</td><td>Ľadová Kvapka</td><td>objednavky@ladovakvapka.sk</td><td>Priemyselná 3, Dolný Kubín</td></tr>
+  </table>
+
+  <table class="db">
+    <caption>faktura</caption>
+    <tr><th>id</th><th>datum</th><th>stav</th><th>zakaznik</th></tr>
+    <tr><td>2026001</td><td>12.1.2026</td><td>zaplatená</td><td>1</td></tr>
+    <tr><td>2026002</td><td>20.1.2026</td><td>čaká na zaplatenie</td><td>2</td></tr>
+  </table>
+
+  <table class="db">
+    <caption>polozky</caption>
+    <tr><th>id</th><th>faktura</th><th>nazov</th><th>mnozstvo</th><th>cena</th></tr>
+    <tr><td>1</td><td>2026001</td><td>hosting</td><td>1</td><td>49,00</td></tr>
+    <tr><td>2</td><td>2026001</td><td>logo</td><td>1</td><td>120,00</td></tr>
+    <tr><td>3</td><td>2026002</td><td>hosting</td><td>1</td><td>49,00</td></tr>
+  </table>
+
+  <div class="uloha">
+    <h3>Úloha 1</h3>
+    <ul>
+      <li>V každej tabuľke <strong>podčiarkni</strong> stĺpec, ktorý je <span class="pill">PK</span> (primárny kľúč).</li>
+      <li>Nájdi <span class="pill">FK</span> (cudzí kľúč) — ktorý stĺpec odkazuje na inú tabuľku a na ktorú?</li>
+      <li>Čo je <strong>doména</strong> stĺpca <code>stav</code>? (Nápoveda: spomeň si na „Overenie údajov".)</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ══ 2  ČO NESEDÍ ══ -->
+<section id="nesedi">
+  <h2>2 · Čo nám nesedí?</h2>
+  <p>Pozri sa ešte raz na tabuľku <code>polozky</code>.</p>
+
+  <div class="otazka">
+    <strong>Zamysli sa a odpovedz:</strong>
+    <ul>
+      <li>Ktorý údaj sa v <code>polozky</code> <strong>opakuje</strong> dookola?</li>
+      <li>Koľkokrát je v databáze uložená cena hostingu?</li>
+      <li>Čo všetko musíš opraviť, keď hosting <strong>zdražie</strong> na 59 €? Čo ak niekde zabudneš?</li>
+      <li>Aký je vzťah medzi <strong>faktúrou</strong> a <strong>tovarom</strong> (jedna faktúra — koľko tovarov? jeden tovar — na koľkých faktúrach?)?</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ══ 3  OPRAVENÝ MODEL ══ -->
+<section id="model">
+  <h2>3 · Opravený model — 4 tabuľky</h2>
+  <p>Tovar dáme do vlastného <strong>cenníka</strong> (uložený raz) a medzi faktúru a cenník vložíme <strong>väzobnú</strong> tabuľku:</p>
+
+  <table class="db">
+    <caption>zakaznik</caption>
+    <tr><th>id (PK)</th><th>meno</th><th>email</th><th>adresa</th></tr>
+  </table>
+
+  <table class="db">
+    <caption>faktura</caption>
+    <tr><th>id (PK)</th><th>datum</th><th>stav</th><th>zakaznik (FK)</th></tr>
+  </table>
+
+  <table class="db">
+    <caption>polozka_cennika</caption>
+    <tr><th>id (PK)</th><th>nazov</th><th>cena</th></tr>
+  </table>
+
+  <table class="db">
+    <caption>faktura_polozka  (väzobná)</caption>
+    <tr><th>id (PK)</th><th>faktura (FK)</th><th>polozka_cennika (FK)</th><th>mnozstvo</th></tr>
+  </table>
+
+  <div class="info">
+    Cena je teraz <strong>len v cenníku</strong>. <code>mnozstvo</code> patrí do väzobnej tabuľky — závisí od faktúry aj tovaru naraz.
+  </div>
+</section>
+
+
+<!-- ══ 4  NAKRESLI ══ -->
+<section id="kresli">
+  <h2>4 · Nakresli to — Chen notácia (draw.io)</h2>
+
+  <table class="legenda">
+    <tr><th>Značka</th><th>Čo znamená</th></tr>
+    <tr><td>obdĺžnik ▭</td><td><strong>entita</strong> (tabuľka)</td></tr>
+    <tr><td>elipsa ⬭</td><td><strong>atribút</strong> (stĺpec); <u>podčiarknutý</u> = <strong>PK</strong></td></tr>
+    <tr><td>kosoštvorec ◇</td><td><strong>vzťah</strong> medzi entitami</td></tr>
+    <tr><td>čísla pri čiarach</td><td><strong>kardinalita</strong>: 1, N, M</td></tr>
+  </table>
+
+  <div class="kresli">
+    <h3>✏️ Postup</h3>
+    <ol>
+      <li>Nakresli tri obdĺžniky: <code>zakaznik</code>, <code>faktura</code>, <code>polozka_cennika</code>.</li>
+      <li>Ku každému dopíš atribúty ako elipsy; <code>id</code> <u>podčiarkni</u> (PK).</li>
+      <li>Medzi <code>zakaznik</code> a <code>faktura</code> daj kosoštvorec <em>„má vystavenú"</em> a kardinalitu <strong>1 : N</strong>.</li>
+      <li>Medzi <code>faktura</code> a <code>polozka_cennika</code> daj kosoštvorec <em>„obsahuje"</em> a kardinalitu <strong>M : N</strong>.</li>
+      <li>Na vzťah <em>„obsahuje"</em> zaves elipsu <code>mnozstvo</code> — tento údaj patrí <strong>vzťahu</strong>, nie entite.</li>
+    </ol>
+  </div>
+
+</section>
+
+
+<!-- ══ PRACOVNÝ LIST ══ -->
+<section id="pl">
+  <h2>📝 Pracovný list</h2>
+  <div class="uloha">
+    <p style="margin-bottom:.4rem"><strong>Otvor MS Forms a vyplň pracovný list.</strong></p>
+    <p style="margin-bottom:0">Otázky idú v rovnakom poradí ako dnešná hodina. Na konci <strong>odošli</strong>.</p>
+  </div>
+</section>
+
+</body>
+</html>

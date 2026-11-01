@@ -35,6 +35,6 @@ INSERT INTO notebooky VALUES
 
 # 07 ERD diagram
 
-https://forms.cloud.microsoft/e/rDaWXr3PKu
+-[test](https://forms.cloud.microsoft/e/rDaWXr3PKu)
 
 http://10.37.255.249/

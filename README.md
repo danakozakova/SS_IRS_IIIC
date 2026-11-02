@@ -36,5 +36,7 @@ INSERT INTO notebooky VALUES
 # 07 ERD diagram
 
 -[test](https://forms.cloud.microsoft/e/rDaWXr3PKu)
+- [nahrať súbory](https://spstv-my.sharepoint.com/:f:/g/personal/dana_kozakova_strednaskolats_sk/IgD5L5YK72sPTJQWwgWrpyLuAXDWknlCaUQx8N-7dEYtuUE)
+
 
 http://10.37.255.249/

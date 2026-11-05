@@ -35,6 +35,8 @@ INSERT INTO notebooky VALUES
 
 # 07 ERD diagram
 
+IRS_07_erd_zadanie.html
+
 - [test](https://forms.cloud.microsoft/e/rDaWXr3PKu)
 - [nahrať súbory](https://spstv-my.sharepoint.com/:f:/g/personal/dana_kozakova_strednaskolats_sk/IgCOjW1_xCK_TpOyKeZbCwEoAWLhRMV7lSEScOC0bi_waEo)
 

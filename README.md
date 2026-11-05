@@ -35,6 +35,8 @@ INSERT INTO notebooky VALUES
 
 # 07 ERD diagram
 
+- [IRS_07_erd_zadanie.html](https://danakozakova.github.io/SS_IRS_IIIC/IRS_07_erd_zadanie.html)
+
 IRS_07_erd_zadanie.html
 
 - [test](https://forms.cloud.microsoft/e/rDaWXr3PKu)

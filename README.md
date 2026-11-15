@@ -38,6 +38,9 @@ INSERT INTO notebooky VALUES
 - [IRS_07_erd_zadanie.html](https://danakozakova.github.io/SS_IRS_IIIC/IRS_07_erd_zadanie.html)
 - [test](https://forms.cloud.microsoft/e/rDaWXr3PKu)
 
+# 08 Crow's foot diagram
+- [IRS_08_vazby_zadanie.html](https://danakozakova.github.io/SS_IRS_IIIC/IRS_08_vazby_zadanie.html)
+- [TEST](https://forms.cloud.microsoft/e/mZmuSjqp4M)
 ---
 
 - [nahrať súbory](https://spstv-my.sharepoint.com/:f:/g/personal/dana_kozakova_strednaskolats_sk/IgCOjW1_xCK_TpOyKeZbCwEoAWLhRMV7lSEScOC0bi_waEo)

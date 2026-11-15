@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IRS — crow's foot a typy väzieb (zadanie)</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f8fafc; color: #1e293b; font-size: 20px; line-height: 1.7; }
+    nav { position: sticky; top: 0; background: #1e1b4b; color: white; display: flex; gap: .25rem; padding: .6rem 2rem; flex-wrap: wrap; z-index: 100; align-items: center; }
+    nav strong { color: white; margin-right: .5rem; }
+    nav a { color: #a5b4fc; text-decoration: none; font-size: .85rem; padding: .3rem .9rem; border-radius: .25rem; }
+    nav a:hover { background: #312e81; color: white; }
+    section { max-width: 980px; margin: 0 auto; padding: 3rem 2rem 2.5rem; border-bottom: 1px solid #e2e8f0; }
+    section:last-child { border-bottom: none; }
+    h1 { font-size: 2.2rem; color: #1e1b4b; margin-bottom: .5rem; }
+    h2 { font-size: 1.8rem; color: #312e81; margin-bottom: 1.2rem; padding-bottom: .5rem; border-bottom: 2px solid #e0e7ff; }
+    h3 { font-size: 1.25rem; color: #4338ca; margin: 1.5rem 0 .6rem; }
+    p  { margin-bottom: .85rem; }
+    ul, ol { margin: .5rem 0 .85rem 1.5rem; }
+    li { margin-bottom: .5rem; }
+    code { background: #e0e7ff; color: #3730a3; padding: .15rem .5rem; border-radius: .3rem; font-size: .88em; font-family: 'Cascadia Code', 'Fira Code', monospace; }
+    .info  { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1rem 1.5rem; border-radius: 0 .5rem .5rem 0; margin: 1rem 0; }
+    .uloha { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 1.1rem 1.6rem; border-radius: 0 .75rem .75rem 0; margin: 1.2rem 0; }
+    .uloha h3 { margin-top:0; color:#15803d; }
+    .kresli { background: #ede9fe; border: 2px dashed #7c3aed; padding: 1.1rem 1.6rem; border-radius: .75rem; margin: 1.2rem 0; }
+    .kresli h3 { margin-top:0; color:#6d28d9; }
+    .kresli ol { margin-bottom:0; }
+    .legenda { width:100%; border-collapse:collapse; margin:1rem 0; font-size:.95rem; }
+    .legenda th { background:#312e81; color:white; padding:.6rem 1rem; text-align:left; }
+    .legenda td { padding:.55rem 1rem; border-bottom:1px solid #e2e8f0; vertical-align:middle; }
+    .legenda tr:nth-child(even) td { background:#f8fafc; }
+    .model { width:100%; border-collapse:collapse; margin:1rem 0; font-size:.85rem; font-family:'Cascadia Code','Fira Code',monospace; }
+    .model th { background:#312e81; color:white; padding:.45rem .7rem; text-align:left; }
+    .model td { padding:.4rem .7rem; border-bottom:1px solid #e2e8f0; }
+    .fill { width:100%; border-collapse:collapse; margin:1rem 0; font-size:.95rem; }
+    .fill th { background:#312e81; color:white; padding:.5rem .9rem; text-align:left; }
+    .fill td { padding:.5rem .9rem; border-bottom:1px solid #e2e8f0; }
+    .fill td.ans { background:#fafafa; color:#94a3b8; }
+    .placeholder { background:#fafafa; border:2px dashed #cbd5e1; border-radius:.75rem; padding:3.5rem 1rem; margin:1.2rem 0; text-align:center; color:#94a3b8; }
+    .sym { vertical-align:middle; }
+    .meno { color:#6b7280; font-size:.95rem; margin:1rem 0 0; }
+    .pill { display:inline-block; background:#1e1b4b; color:white; border-radius:999px; padding:.1rem .7rem; font-size:.8rem; font-weight:700; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <strong>IRS · väzby — zadanie</strong>
+  <a href="#ciel">Čo spravíš</a>
+  <a href="#model">Náš model</a>
+  <a href="#symboly">Crow's foot</a>
+  <a href="#kresli">Nakresli</a>
+  <a href="#typy">Typy väzieb</a>
+  <a href="#koniec">Testík</a>
+</nav>
+
+<section id="ciel">
+  <p style="color:#6b7280; font-size:.9rem; margin-bottom:.5rem">IRS · III.C · 1. skupina · zadanie</p>
+  <h1>Crow's foot a typy väzieb</h1>
+  <p style="color:#4338ca; font-size:1.1rem">Ten istý model ako minule prekreslíš v <strong>crow's foot</strong> notácii a naučíš sa rozoznať typy väzieb (1:1, 1:N, M:N).</p>
+  <p class="meno">Meno: ______________________  Trieda: ________</p>
+</section>
+
+<section id="model">
+  <h2>1 · Náš model (4 tabuľky)</h2>
+  <p>Pripomeň si opravený model z minulej hodiny:</p>
+  <table class="model">
+    <tr><th>Tabuľka</th><th>Stĺpce (PK, FK)</th></tr>
+    <tr><td>zakaznik</td><td><u>id</u>, meno, email, adresa</td></tr>
+    <tr><td>faktura</td><td><u>id</u>, datum, stav, <i>zakaznik_id (FK)</i></td></tr>
+    <tr><td>polozka_cennika</td><td><u>id</u>, nazov, cena</td></tr>
+    <tr><td>faktura_polozka</td><td><u>id</u>, <i>faktura_id (FK)</i>, <i>polozka_cennika_id (FK)</i>, mnozstvo</td></tr>
+  </table>
+</section>
+
+<section id="symboly">
+  <h2>2 · Crow's foot — symboly</h2>
+  <p>Namiesto kosoštvorca a čísel používa crow's foot <strong>symboly na konci čiary</strong>:</p>
+  <table class="legenda">
+    <tr><th style="width:90px">Symbol</th><th>Význam</th></tr>
+    <tr><td><svg class="sym" width="34" height="24"><line x1="17" y1="4" x2="17" y2="20" stroke="#d97706" stroke-width="2.5"/><line x1="0" y1="12" x2="34" y2="12" stroke="#d97706" stroke-width="2.5"/></svg></td><td><strong>práve jeden</strong> (zodpovedá <strong>1</strong>)</td></tr>
+    <tr><td><svg class="sym" width="34" height="24"><line x1="0" y1="12" x2="34" y2="12" stroke="#d97706" stroke-width="2.5"/><line x1="12" y1="12" x2="34" y2="4" stroke="#d97706" stroke-width="2.5"/><line x1="12" y1="12" x2="34" y2="20" stroke="#d97706" stroke-width="2.5"/></svg></td><td><strong>veľa</strong> — vranie nôžky (zodpovedá <strong>N</strong>)</td></tr>
+    <tr><td><svg class="sym" width="34" height="24"><line x1="0" y1="12" x2="34" y2="12" stroke="#d97706" stroke-width="2.5"/><circle cx="20" cy="12" r="6" fill="#fff" stroke="#d97706" stroke-width="2.5"/></svg></td><td><strong>voliteľné</strong> (nula) — „môže, ale nemusí"</td></tr>
+  </table>
+  <div class="info">Entita sa v crow's foot kreslí ako <strong>obdĺžnik so zoznamom stĺpcov vnútri</strong>; <u>PK podčiarkneš</u>, <i>FK</i> označíš.</div>
+</section>
+
+<section id="kresli">
+  <h2>3 · Nakresli model v crow's foot (draw.io)</h2>
+  <div class="kresli">
+    <h3>✏️ Postup</h3>
+    <ol>
+      <li>Nakresli 4 obdĺžniky a do každého napíš jeho stĺpce.</li>
+      <li>Označ <u>PK</u> a <i>FK</i> v každej tabuľke.</li>
+      <li><code>zakaznik</code> — <code>faktura</code>: čiarka (1) pri zákazníkovi, nôžky (N) pri faktúre.</li>
+      <li><code>faktura</code> — <code>faktura_polozka</code>: 1 pri faktúre, N pri väzobnej.</li>
+      <li><code>polozka_cennika</code> — <code>faktura_polozka</code>: 1 pri cenníku, N pri väzobnej.</li>
+    </ol>
+  </div>
+  <div class="placeholder">Sem patrí tvoj diagram — kreslíš ho v draw.io spolu s učiteľkou.</div>
+</section>
+
+<section id="typy">
+  <h2>4 · Urči typ väzby</h2>
+  <p>Ku každej dvojici napíš, či je to <span class="pill">1:1</span>, <span class="pill">1:N</span> alebo <span class="pill">M:N</span>:</p>
+  <table class="fill">
+    <tr><th>Dvojica</th><th>Typ väzby</th></tr>
+    <tr><td>zákazník — faktúra</td><td class="ans">…</td></tr>
+    <tr><td>faktúra — položka cenníka (tovar)</td><td class="ans">…</td></tr>
+    <tr><td>trieda — žiak</td><td class="ans">…</td></tr>
+    <tr><td>žiak — rodné číslo</td><td class="ans">…</td></tr>
+    <tr><td>vyučovací predmet — žiak</td><td class="ans">…</td></tr>
+  </table>
+  <div class="info">Pri <strong>M:N</strong> vždy dopĺňame <strong>väzobnú tabuľku</strong> — ako je <code>faktura_polozka</code> medzi faktúrou a tovarom.</div>
+</section>
+
+<section id="koniec">
+  <h2>📝 Hodnotený testík</h2>
+  <div class="uloha" style="border-left-color:#f59e0b;background:#fffbeb">
+    <p style="margin-bottom:.3rem"><strong>Na konci hodiny — testík v MS Forms (skupina A / B).</strong></p>
+    <p style="margin-bottom:0">Je <strong>hodnotený</strong>. Výberové otázky, na záver odošli.</p>
+  </div>
+</section>
+
+</body>
+</html>

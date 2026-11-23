@@ -46,7 +46,7 @@ INSERT INTO notebooky VALUES
 - [zreviduj návrh SQL príkazu od AI](IRS_09_mysql_create_detail_pokazeny.sql)
 - [zapíš zistenia, chyby](https://forms.cloud.microsoft/e/FMUz48Diys)
 
-- [TEST](https://forms.cloud.microsoft/e/qGtegFfU9N)
+- [TEST na záver](https://forms.cloud.microsoft/e/qGtegFfU9N)
 ---
 
 - [nahrať súbory](https://spstv-my.sharepoint.com/:f:/g/personal/dana_kozakova_strednaskolats_sk/IgCOjW1_xCK_TpOyKeZbCwEoAWLhRMV7lSEScOC0bi_waEo)

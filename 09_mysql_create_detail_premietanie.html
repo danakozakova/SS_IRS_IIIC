@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IRS — CREATE do hĺbky a recenzia návrhu od AI</title>
+<style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f8fafc; color: #1e293b; font-size: 20px; line-height: 1.7; }
+    nav { position: sticky; top: 0; background: #1e1b4b; color: white; display: flex; gap: .25rem; padding: .6rem 2rem; flex-wrap: wrap; z-index: 100; align-items: center; }
+    nav strong { color: white; margin-right: .5rem; }
+    nav a { color: #a5b4fc; text-decoration: none; font-size: .85rem; padding: .3rem .9rem; border-radius: .25rem; }
+    nav a:hover { background: #312e81; color: white; }
+    section { max-width: 980px; margin: 0 auto; padding: 3rem 2rem 2.5rem; border-bottom: 1px solid #e2e8f0; }
+    section:last-child { border-bottom: none; }
+    h1 { font-size: 2.2rem; color: #1e1b4b; margin-bottom: .5rem; }
+    h2 { font-size: 1.8rem; color: #312e81; margin-bottom: 1.2rem; padding-bottom: .5rem; border-bottom: 2px solid #e0e7ff; }
+    h3 { font-size: 1.25rem; color: #4338ca; margin: 1.75rem 0 .6rem; }
+    p  { margin-bottom: .85rem; }
+    ul, ol { margin: .5rem 0 .85rem 1.5rem; }
+    li { margin-bottom: .5rem; }
+    .krok { color:#6b7280; font-size:.8rem; text-transform:uppercase; letter-spacing:.06em; font-weight:700; margin-bottom:.3rem; }
+    code { background: #e0e7ff; color: #3730a3; padding: .15rem .5rem; border-radius: .3rem; font-size: .88em; font-family: 'Cascadia Code', 'Fira Code', monospace; }
+    pre  { background: #0f172a; color: #e2e8f0; padding: 1.3rem 1.6rem; border-radius: .75rem; font-family: 'Cascadia Code', 'Fira Code', monospace; font-size: .9rem; overflow-x: auto; margin: 1rem 0 1.2rem; line-height: 1.6; }
+    pre .kw { color:#60a5fa; font-weight:700; }
+    pre .ty { color:#fbbf24; }
+    pre .cm { color:#64748b; font-style:italic; }
+    pre .st { color:#86efac; }
+    pre .bad { color:#fca5a5; font-weight:700; }
+    pre .good { color:#86efac; font-weight:700; }
+    .info  { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1rem 1.5rem; border-radius: 0 .5rem .5rem 0; margin: 1rem 0; }
+    .tip   { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 1rem 1.5rem; border-radius: 0 .5rem .5rem 0; margin: 1rem 0; }
+    .pozor { background: #fef2f2; border-left: 4px solid #ef4444; padding: 1rem 1.5rem; border-radius: 0 .5rem .5rem 0; margin: 1rem 0; }
+    .otazka { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 1rem 1.5rem; border-radius: 0 .5rem .5rem 0; margin: 1rem 0; }
+    .otazka strong { color:#b45309; }
+    .cheat { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .92rem; }
+    .cheat th { background: #312e81; color: white; padding: .6rem 1rem; text-align: left; }
+    .cheat td { padding: .55rem 1rem; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
+    .cheat tr:nth-child(even) td { background: #f8fafc; }
+    .cheat code { background:#ddd6fe; }
+    .pill { display:inline-block; background:#1e1b4b; color:white; border-radius:999px; padding:.1rem .7rem; font-size:.8rem; font-weight:700; }
+</style>
+</head>
+<body>
+
+<nav>
+  <strong>IRS · CREATE do hĺbky</strong>
+  <a href="#uvod">Úvod</a>
+  <a href="#typ">1 Typ</a>
+  <a href="#null">2 NOT NULL</a>
+  <a href="#kluce">3 Kľúče + AUTO_INCREMENT</a>
+  <a href="#check">4 CHECK</a>
+  <a href="#recenzia">Recenzia AI</a>
+  <a href="#demo">Demo naživo</a>
+  <a href="#uloha">Úloha</a>
+</nav>
+
+<section id="uvod">
+  <p style="color:#6b7280; font-size:.9rem; margin-bottom:.5rem">IRS · III.C · 1. skupina · MySQL / phpMyAdmin</p>
+  <h1>CREATE do hĺbky — a ako zhodnotiť návrh od AI</h1>
+  <p style="color:#4338ca; font-size:1.1rem">Minule nám <code>CREATE</code> napísala AI z nášho ERD diagramu a my sme ho len spustili. Dnes sa staneme <strong>recenzentmi</strong>: naučíme sa, čo všetko sa v tabuľke nastavuje, a potom posúdime, či je AI návrh naozaj dobrý.</p>
+  <div class="info"><strong>Štyri „nastavenia" každého stĺpca:<br>
+  → </strong> dátový <strong>typ</strong> <br>
+  → smie byť <strong>NULL</strong>? <br>
+  → <strong>kľúče</strong> (PK/FK) <br>
+  → <strong>doména</strong> (CHECK). Týmto poradím prejdeme každý stĺpec.</div>
+</section>
+
+<section id="typ">
+  <p class="krok">Nastavenia 1</p>
+  <h2>Dátový typ — čo do ktorého stĺpca</h2>
+  <table class="cheat">
+    <tr><th>Typ</th><th>Na čo</th><th>U nás</th></tr>
+    <tr><td><code>INT</code></td><td>celé čísla</td><td>id, zakaznik_id, mnozstvo</td></tr>
+    <tr><td><code>VARCHAR(n)</code></td><td>text do dĺžky n</td><td>meno, email, nazov, stav</td></tr>
+    <tr><td><code>DATE</code></td><td>dátum</td><td>datum</td></tr>
+    <tr><td><code>DECIMAL(8,2)</code></td><td>peniaze (2 desatinné)</td><td>cena</td></tr>
+  </table>
+  <div class="pozor">Peniaze <strong>nikdy</strong> ako <code>FLOAT</code> — vznikajú zaokrúhľovacie chyby (napr. 0,1 + 0,2 ≠ 0,3). Vždy <code>DECIMAL</code>.</div>
+  <div class="otazka"><strong>Otázka:</strong> prečo je <code>datum</code> ako <code>VARCHAR(20)</code> zlý nápad? (Nápoveda: ako zoradíš „10.1.2026" a „9.2.2026" ako text?)</div>
+</section>
+
+<section id="null">
+  <p class="krok">Nastavenia 2</p>
+  <h2>NOT NULL — smie byť stĺpec prázdny?</h2>
+  <p><code>NOT NULL</code> znamená „táto hodnota musí byť vyplnená". Pýtame sa pri každom stĺpci: dáva zmysel záznam bez nej?</p>
+  <table class="cheat">
+    <tr><th>Stĺpec</th><th>NOT NULL?</th><th>Prečo</th></tr>
+    <tr><td><code>zakaznik.meno</code></td><td>áno</td><td>zákazník bez mena nedáva zmysel</td></tr>
+    <tr><td><code>zakaznik.email</code></td><td>nie</td><td>e-mail nemusíme mať ku každému</td></tr>
+    <tr><td><code>faktura.zakaznik_id</code></td><td>áno</td><td>faktúra musí patriť zákazníkovi</td></tr>
+    <tr><td><code>faktura_polozka.mnozstvo</code></td><td>áno</td><td>položka bez množstva nemá zmysel</td></tr>
+  </table>
+</section>
+
+<section id="kluce">
+  <p class="krok">Nastavenie 3</p>
+  <h2>Kľúče — a kedy AUTO_INCREMENT</h2>
+  <p><code>PRIMARY KEY</code> = jednoznačná identifikácia riadku. <code>FOREIGN KEY</code> = odkaz na riadok v inej tabuľke (tvrdá referenčná integrita — už sme videli, že databáza nepustí položku na neexistujúcu faktúru).</p>
+  <h3>Kto určuje id: databáza, alebo my?</h3>
+  <table class="cheat">
+    <tr><th>Stĺpec</th><th>Ako</th><th>Prečo</th></tr>
+    <tr><td><code>zakaznik.id</code>, <code>polozka_cennika.id</code></td><td><code>AUTO_INCREMENT</code></td><td>umelé poradové id — nech ho čísluje databáza</td></tr>
+    <tr><td><code>faktura.id</code></td><td><strong>bez</strong> AUTO_INCREMENT</td><td>číslo faktúry je naše (2026001, 2026002…) — zadávame ho sami</td></tr>
+  </table>
+  <div class="tip"><code>AUTO_INCREMENT</code> je skvelé pre „technické" id, ktoré nikoho nezaujíma. Ak má číslo <strong>význam v reálnom svete</strong> (číslo faktúry, evidenčné číslo), zadávame si ho sami.</div>
+</section>
+
+<section id="check">
+  <p class="krok">Nastavenie 4 — nové</p>
+  <h2>CHECK — povolené hodnoty (doména)</h2>
+  <p><code>CHECK</code> stráži, aké hodnoty do stĺpca vôbec smú. Je to presne tá <strong>doména</strong>, ktorú sme v Exceli strážili cez <em>Overenie údajov</em> — tu je zabudovaná priamo v tabuľke.</p>
+<pre><span class="kw">CREATE TABLE</span> faktura_polozka (
+    ...
+    mnozstvo  <span class="ty">INT</span> <span class="kw">NOT NULL</span> <span class="good">CHECK (mnozstvo &gt; 0)</span>
+);
+
+<span class="kw">CREATE TABLE</span> polozka_cennika (
+    ...
+    cena  <span class="ty">DECIMAL</span>(8,2) <span class="kw">NOT NULL</span> <span class="good">CHECK (cena &gt;= 0)</span>
+);</pre>
+  <div class="info">Spomeň si na faktúrový mini-projekt: záporné množstvo <code>−2</code>, cena <code>−120</code>, množstvo <code>0</code>. Takéto hodnoty <code>CHECK</code> rovno odmietne — nemusíme ich „zakrúžkovať" dodatočne.</div>
+  <div class="tip"><strong>Náš server:</strong> MariaDB 10.4 — <code>CHECK</code> <strong>vynucuje</strong> (platí od MariaDB 10.2+ / MySQL 8.0.16+; staršie MySQL ho len ticho ignoruje). Takže o chvíľu uvidíme, ako naozaj odmietne zlú hodnotu.</div>
+</section>
+
+<section id="recenzia">
+  <p class="krok">Metóda</p>
+  <h2>Ako recenzovať návrh od AI</h2>
+  <p>AI návrh sa väčšinou <strong>spustí bez chyby</strong> — to ešte neznamená, že je správny. Prejdi každý stĺpec štyrmi nastaveniami:</p>
+  <table class="cheat">
+    <tr><th>#</th><th>Otázka</th></tr>
+    <tr><td>1</td><td>Má stĺpec <strong>správny dátový typ</strong>? (peniaze = DECIMAL, dátum = DATE)</td></tr>
+    <tr><td>2</td><td>Smie byť <strong>prázdny</strong>, alebo tam patrí <code>NOT NULL</code>?</td></tr>
+    <tr><td>3</td><td>Sú <strong>kľúče</strong> v poriadku? PK správny, chýba niekde <code>FOREIGN KEY</code>? AUTO_INCREMENT tam, kde má byť?</td></tr>
+    <tr><td>4</td><td>Nemá mať stĺpec <strong>CHECK</strong> (povolené hodnoty)?</td></tr>
+  </table>
+</section>
+
+<section id="demo">
+  <p class="krok">Naživo — po spustení opravenej verzie</p>
+  <h2>Databáza odmietne zlú hodnotu</h2>
+  <p>Opravený návrh má <code>CHECK</code> aj <code>FOREIGN KEY</code>. Skúsime schválne tri chyby — každú databáza <strong>odmietne</strong> (v Exceli by prešli):</p>
+<pre><span class="cm">-- CHECK: záporná cena</span>
+<span class="kw">INSERT INTO</span> polozka_cennika (nazov, cena) <span class="kw">VALUES</span> (<span class="st">'test'</span>, -5);
+<span class="cm">-- → Check constraint 'cena' failed</span>
+
+<span class="cm">-- CHECK: nulové množstvo</span>
+<span class="kw">INSERT INTO</span> faktura_polozka (faktura_id, polozka_cennika_id, mnozstvo)
+<span class="kw">VALUES</span> (2026001, 1, 0);
+<span class="cm">-- → Check constraint failed</span>
+
+<span class="cm">-- FOREIGN KEY: položka na neexistujúcu faktúru 9999</span>
+<span class="kw">INSERT INTO</span> faktura_polozka (faktura_id, polozka_cennika_id, mnozstvo)
+<span class="kw">VALUES</span> (9999, 1, 1);
+<span class="cm">-- → Cannot add or update a child row: a foreign key constraint fails</span></pre>
+  <div class="info">Presne toto bol v Exceli len „mäkký" zoznam v Overení údajov — dal sa obísť. Databáza to stráži <strong>tvrdo</strong>.</div>
+</section>
+
+<section id="uloha">
+  <h2>🔎 Úloha — zrecenzuj návrh od AI</h2>
+  <div class="tip">
+    <p style="margin-bottom:.3rem">Otvorte <code>09_mysql_create_detail_pokazeny.sql</code> a v dvojiciach nájdite chyby. Ku každej napíšte <strong>čo je zle</strong> a <strong>ako to opraviť</strong>.</p>
+    <p style="margin-bottom:0">Potom spustíme opravenú verziu v phpMyAdmin a vyskúšame, že <code>CHECK</code> aj <code>FOREIGN KEY</code> naozaj chybu odmietnu. Nakoniec vyplňte pracovný list v MS Forms.</p>
+  </div>
+</section>
+
+</body>
+</html>

@@ -43,6 +43,7 @@ INSERT INTO notebooky VALUES
 - [TEST](https://forms.cloud.microsoft/e/mZmuSjqp4M)
 
 # 09 SQL - príkaz CREATE
+- [IRS_09_mysql_create_detail_premietanie.html](https://danakozakova.github.io/SS_IRS_IIIC/IRS_09_mysql_create_detail_premietanie.html)
 - [zreviduj návrh SQL príkazu od AI](IRS_09_mysql_create_detail_pokazeny.sql)
 - [zapíš zistenia, chyby](https://forms.cloud.microsoft/e/FMUz48Diys)
 

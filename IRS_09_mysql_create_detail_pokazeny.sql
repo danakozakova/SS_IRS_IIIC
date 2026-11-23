@@ -12,6 +12,14 @@ DROP TABLE IF EXISTS faktura;
 DROP TABLE IF EXISTS polozka_cennika;
 DROP TABLE IF EXISTS zakaznik;
 
+-- --- faktúry -----------------------------------------------------------
+CREATE TABLE faktura (
+    id          INT AUTO_INCREMENT PRIMARY KEY,
+    datum       VARCHAR(20),
+    stav        VARCHAR(30) NOT NULL,
+    zakaznik_id INT
+);
+
 -- --- zákazníci ---------------------------------------------------------
 CREATE TABLE zakaznik (
     id      INT PRIMARY KEY,
@@ -27,13 +35,6 @@ CREATE TABLE polozka_cennika (
     cena    FLOAT
 );
 
--- --- faktúry -----------------------------------------------------------
-CREATE TABLE faktura (
-    id          INT AUTO_INCREMENT PRIMARY KEY,
-    datum       VARCHAR(20),
-    stav        VARCHAR(30) NOT NULL,
-    zakaznik_id INT
-);
 
 -- --- položky na faktúre (väzobná tabuľka M:N) --------------------------
 CREATE TABLE faktura_polozka (

@@ -42,7 +42,10 @@ INSERT INTO notebooky VALUES
 - [IRS_08_vazby_zadanie.html](https://danakozakova.github.io/SS_IRS_IIIC/IRS_08_vazby_zadanie.html)
 - [TEST](https://forms.cloud.microsoft/e/mZmuSjqp4M)
 
-# 09 
+# 09 SQL - príkaz CREATE
+- [zreviduj návrh SQL príkazu od AI](IRS_09_mysql_create_detail_pokazeny.sql)
+- [zapíš zistenia, chyby](https://forms.cloud.microsoft/e/FMUz48Diys)
+
 - [TEST](https://forms.cloud.microsoft/e/qGtegFfU9N)
 ---
 

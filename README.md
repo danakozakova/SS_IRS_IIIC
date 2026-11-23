@@ -43,7 +43,7 @@ INSERT INTO notebooky VALUES
 - [TEST](https://forms.cloud.microsoft/e/mZmuSjqp4M)
 
 # 09 
-- https://forms.cloud.microsoft/e/qGtegFfU9N
+- [TEST](https://forms.cloud.microsoft/e/qGtegFfU9N)
 ---
 
 - [nahrať súbory](https://spstv-my.sharepoint.com/:f:/g/personal/dana_kozakova_strednaskolats_sk/IgCOjW1_xCK_TpOyKeZbCwEoAWLhRMV7lSEScOC0bi_waEo)

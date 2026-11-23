@@ -41,6 +41,9 @@ INSERT INTO notebooky VALUES
 # 08 Crow's foot diagram
 - [IRS_08_vazby_zadanie.html](https://danakozakova.github.io/SS_IRS_IIIC/IRS_08_vazby_zadanie.html)
 - [TEST](https://forms.cloud.microsoft/e/mZmuSjqp4M)
+
+# 09 
+- https://forms.cloud.microsoft/e/qGtegFfU9N
 ---
 
 - [nahrať súbory](https://spstv-my.sharepoint.com/:f:/g/personal/dana_kozakova_strednaskolats_sk/IgCOjW1_xCK_TpOyKeZbCwEoAWLhRMV7lSEScOC0bi_waEo)

@@ -1,0 +1,45 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram name="ERD Chen — faktúry" id="erd-chen-faktury">
+    <mxGraphModel dx="900" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="826" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="zak" value="zakaznik" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eef2ff;strokeColor=#4338ca;fontStyle=1;fontSize=16;fontColor=#1E1B4B;" vertex="1" parent="1"><mxGeometry x="40" y="360" width="160" height="50" as="geometry"/></mxCell>
+        <mxCell id="fak" value="faktura" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eef2ff;strokeColor=#4338ca;fontStyle=1;fontSize=16;fontColor=#1E1B4B;" vertex="1" parent="1"><mxGeometry x="440" y="360" width="160" height="50" as="geometry"/></mxCell>
+        <mxCell id="pc" value="polozka_cennika" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eef2ff;strokeColor=#4338ca;fontStyle=1;fontSize=16;fontColor=#1E1B4B;" vertex="1" parent="1"><mxGeometry x="840" y="360" width="180" height="50" as="geometry"/></mxCell>
+        <mxCell id="r1" value="má vystavenú" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fef3c7;strokeColor=#d97706;fontStyle=2;fontSize=13;fontColor=#92400E;" vertex="1" parent="1"><mxGeometry x="250" y="355" width="120" height="60" as="geometry"/></mxCell>
+        <mxCell id="r2" value="obsahuje" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fef3c7;strokeColor=#d97706;fontStyle=2;fontSize=13;fontColor=#92400E;" vertex="1" parent="1"><mxGeometry x="660" y="355" width="120" height="60" as="geometry"/></mxCell>
+        <mxCell id="z_id" value="id" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6366f1;fontSize=13;fontColor=#334155;fontStyle=4;" vertex="1" parent="1"><mxGeometry x="0" y="250" width="80" height="40" as="geometry"/></mxCell>
+        <mxCell id="z_meno" value="meno" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6366f1;fontSize=13;fontColor=#334155;" vertex="1" parent="1"><mxGeometry x="95" y="205" width="90" height="40" as="geometry"/></mxCell>
+        <mxCell id="z_mail" value="email" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6366f1;fontSize=13;fontColor=#334155;" vertex="1" parent="1"><mxGeometry x="195" y="205" width="90" height="40" as="geometry"/></mxCell>
+        <mxCell id="z_adr" value="adresa" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6366f1;fontSize=13;fontColor=#334155;" vertex="1" parent="1"><mxGeometry x="275" y="250" width="90" height="40" as="geometry"/></mxCell>
+        <mxCell id="f_id" value="id" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6366f1;fontSize=13;fontColor=#334155;fontStyle=4;" vertex="1" parent="1"><mxGeometry x="400" y="250" width="80" height="40" as="geometry"/></mxCell>
+        <mxCell id="f_dat" value="datum" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6366f1;fontSize=13;fontColor=#334155;" vertex="1" parent="1"><mxGeometry x="495" y="205" width="90" height="40" as="geometry"/></mxCell>
+        <mxCell id="f_stav" value="stav" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6366f1;fontSize=13;fontColor=#334155;" vertex="1" parent="1"><mxGeometry x="590" y="250" width="90" height="40" as="geometry"/></mxCell>
+        <mxCell id="p_id" value="id" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6366f1;fontSize=13;fontColor=#334155;fontStyle=4;" vertex="1" parent="1"><mxGeometry x="815" y="250" width="80" height="40" as="geometry"/></mxCell>
+        <mxCell id="p_naz" value="nazov" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6366f1;fontSize=13;fontColor=#334155;" vertex="1" parent="1"><mxGeometry x="905" y="205" width="90" height="40" as="geometry"/></mxCell>
+        <mxCell id="p_cena" value="cena" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6366f1;fontSize=13;fontColor=#334155;" vertex="1" parent="1"><mxGeometry x="1005" y="250" width="90" height="40" as="geometry"/></mxCell>
+        <mxCell id="mn" value="mnozstvo" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d97706;fontSize=13;fontColor=#92400E;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="665" y="505" width="110" height="44" as="geometry"/></mxCell>
+        <mxCell id="c1" value="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#1E1B4B;" vertex="1" parent="1"><mxGeometry x="205" y="325" width="24" height="20" as="geometry"/></mxCell>
+        <mxCell id="cN1" value="N" style="text;html=1;align=center;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#1E1B4B;" vertex="1" parent="1"><mxGeometry x="378" y="325" width="24" height="20" as="geometry"/></mxCell>
+        <mxCell id="cM" value="M" style="text;html=1;align=center;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#1E1B4B;" vertex="1" parent="1"><mxGeometry x="615" y="325" width="24" height="20" as="geometry"/></mxCell>
+        <mxCell id="cN2" value="N" style="text;html=1;align=center;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#1E1B4B;" vertex="1" parent="1"><mxGeometry x="795" y="325" width="24" height="20" as="geometry"/></mxCell>
+        <mxCell id="e_zak_z_id" style="endArrow=none;html=1;strokeColor=#94a3b8;" edge="1" parent="1" source="zak" target="z_id"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_zak_z_meno" style="endArrow=none;html=1;strokeColor=#94a3b8;" edge="1" parent="1" source="zak" target="z_meno"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_zak_z_mail" style="endArrow=none;html=1;strokeColor=#94a3b8;" edge="1" parent="1" source="zak" target="z_mail"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_zak_z_adr" style="endArrow=none;html=1;strokeColor=#94a3b8;" edge="1" parent="1" source="zak" target="z_adr"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_fak_f_id" style="endArrow=none;html=1;strokeColor=#94a3b8;" edge="1" parent="1" source="fak" target="f_id"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_fak_f_dat" style="endArrow=none;html=1;strokeColor=#94a3b8;" edge="1" parent="1" source="fak" target="f_dat"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_fak_f_stav" style="endArrow=none;html=1;strokeColor=#94a3b8;" edge="1" parent="1" source="fak" target="f_stav"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_pc_p_id" style="endArrow=none;html=1;strokeColor=#94a3b8;" edge="1" parent="1" source="pc" target="p_id"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_pc_p_naz" style="endArrow=none;html=1;strokeColor=#94a3b8;" edge="1" parent="1" source="pc" target="p_naz"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_pc_p_cena" style="endArrow=none;html=1;strokeColor=#94a3b8;" edge="1" parent="1" source="pc" target="p_cena"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_zr1" style="endArrow=none;html=1;strokeColor=#d97706;strokeWidth=2;" edge="1" parent="1" source="zak" target="r1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_r1f" style="endArrow=none;html=1;strokeColor=#d97706;strokeWidth=2;" edge="1" parent="1" source="r1" target="fak"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_fr2" style="endArrow=none;html=1;strokeColor=#d97706;strokeWidth=2;" edge="1" parent="1" source="fak" target="r2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_r2p" style="endArrow=none;html=1;strokeColor=#d97706;strokeWidth=2;" edge="1" parent="1" source="r2" target="pc"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e_r2mn" style="endArrow=none;html=1;strokeColor=#d97706;strokeWidth=2;" edge="1" parent="1" source="r2" target="mn"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

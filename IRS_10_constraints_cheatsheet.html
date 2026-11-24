@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IRS — CREATE TABLE: obmedzenia (cheatsheet)</title>
+<style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f8fafc; color: #1e293b; line-height: 1.5; padding: 1.5rem; }
+    .wrap { max-width: 1000px; margin: 0 auto; }
+    h1 { font-size: 1.6rem; color: #1e1b4b; margin-bottom: .2rem; }
+    .sub { color:#6b7280; font-size:.9rem; margin-bottom: 1.2rem; }
+    h2 { font-size: 1.05rem; color:#312e81; margin: 1.4rem 0 .5rem; padding-bottom:.25rem; border-bottom: 2px solid #e0e7ff; }
+    table { width:100%; border-collapse: collapse; margin-bottom: .8rem; font-size:.82rem; background:white; }
+    th { background:#312e81; color:white; text-align:left; padding:.45rem .7rem; }
+    td { padding:.45rem .7rem; border-bottom:1px solid #e2e8f0; vertical-align:top; }
+    tr:nth-child(even) td { background:#f8fafc; }
+    code { background:#e0e7ff; color:#3730a3; padding:.1rem .35rem; border-radius:.25rem; font-family:'Cascadia Code','Fira Code',monospace; font-size:.9em; white-space:nowrap; }
+    .full { background:#0f172a; color:#e2e8f0; padding:1rem 1.2rem; border-radius:.6rem; font-family:'Cascadia Code','Fira Code',monospace; font-size:.8rem; line-height:1.55; overflow-x:auto; white-space:pre; }
+    .full .kw{color:#60a5fa;font-weight:700}.full .ty{color:#fbbf24}.full .cm{color:#64748b;font-style:italic}.full .gd{color:#86efac}
+    .note { font-size:.78rem; color:#475569; margin:.3rem 0 .8rem; }
+    .cols { display:grid; grid-template-columns:1fr 1fr; gap:0 1.5rem; }
+    @media (max-width:760px){ .cols{grid-template-columns:1fr} }
+    @media print {
+        body{background:white;padding:0;font-size:11px}
+        .full{font-size:9px}
+        h2{page-break-after:avoid}
+        table{page-break-inside:avoid}
+    }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>CREATE TABLE — obmedzenia (cheatsheet)</h1>
+<p class="sub">IRS · III.C · MySQL / MariaDB · phpMyAdmin — rýchly prehľad na dosah ruky</p>
+
+<h2>Obmedzenia stĺpca — čo stráži a ako sa zapíše</h2>
+<table>
+  <tr><th>Obmedzenie</th><th>Čo stráži</th><th>Príklad zápisu</th></tr>
+  <tr><td><code>NOT NULL</code></td><td>Hodnota musí byť vyplnená</td><td><code>meno VARCHAR(100) NOT NULL</code></td></tr>
+  <tr><td><code>PRIMARY KEY</code></td><td>Jednoznačná identifikácia riadku (1×, nesmie byť NULL)</td><td><code>id INT PRIMARY KEY</code></td></tr>
+  <tr><td><code>AUTO_INCREMENT</code></td><td>Databáza čísluje id sama (1, 2, 3…)</td><td><code>id INT AUTO_INCREMENT PRIMARY KEY</code></td></tr>
+  <tr><td><code>UNIQUE</code></td><td>Žiadne dve rovnaké hodnoty (NULL sa smie opakovať)</td><td><code>email VARCHAR(100) UNIQUE</code></td></tr>
+  <tr><td><code>UNSIGNED</code></td><td>Len nezáporné čísla (a väčší kladný rozsah)</td><td><code>id INT UNSIGNED</code></td></tr>
+  <tr><td><code>CHECK</code> (rozsah)</td><td>Dovolené len hodnoty spĺňajúce podmienku</td><td><code>cena DECIMAL(8,2) CHECK (cena &gt;= 0)</code></td></tr>
+  <tr><td><code>CHECK</code> (zoznam)</td><td>Dovolené len vymenované hodnoty (ako výber v Exceli)</td><td><code>stav VARCHAR(30) CHECK (stav IN ('nová','zaplatená'))</code></td></tr>
+  <tr><td><code>FOREIGN KEY</code></td><td>Odkaz musí smerovať na existujúci riadok inej tabuľky</td><td><code>FOREIGN KEY (zakaznik_id) REFERENCES zakaznik(id)</code></td></tr>
+</table>
+
+<div class="cols">
+<div>
+<h2>Dátové typy (naše)</h2>
+<table>
+  <tr><th>Typ</th><th>Na čo</th></tr>
+  <tr><td><code>INT</code></td><td>celé čísla (id, množstvo)</td></tr>
+  <tr><td><code>INT UNSIGNED</code></td><td>celé nezáporné čísla</td></tr>
+  <tr><td><code>VARCHAR(n)</code></td><td>text do dĺžky n</td></tr>
+  <tr><td><code>DATE</code></td><td>dátum (rrrr-mm-dd)</td></tr>
+  <tr><td><code>DECIMAL(8,2)</code></td><td>peniaze (2 des. miesta) — nie FLOAT!</td></tr>
+</table>
+</div>
+<div>
+<h2>Pamätaj</h2>
+<table>
+  <tr><th>Pravidlo</th></tr>
+  <tr><td>Rodičovské tabuľky vytváraj <b>pred</b> deťmi (FK musí mať na čo ukázať).</td></tr>
+  <tr><td><b>Typ FK = typ PK</b>, na ktorý ukazuje (aj <code>UNSIGNED</code>!), inak FK neprejde.</td></tr>
+  <tr><td>Peniaze vždy <code>DECIMAL</code>, nikdy <code>FLOAT</code>.</td></tr>
+  <tr><td><code>AUTO_INCREMENT</code> pre umelé id; reálne číslo (faktúra) zadávaš sám.</td></tr>
+  <tr><td>Celú definíciu overíš: <code>SHOW CREATE TABLE nazov;</code></td></tr>
+</table>
+</div>
+</div>
+
+<h2>Celá tabuľka so všetkými obmedzeniami</h2>
+<div class="full"><span class="kw">CREATE TABLE</span> faktura (
+    id          <span class="ty">INT</span> <span class="gd">UNSIGNED</span> <span class="kw">PRIMARY KEY</span>,              <span class="cm">-- nezáporné, zadávame sami</span>
+    datum       <span class="ty">DATE</span> <span class="kw">NOT NULL</span>,
+    stav        <span class="ty">VARCHAR</span>(30) <span class="kw">NOT NULL</span>
+                <span class="gd">CHECK</span> (stav <span class="kw">IN</span> (<span class="gd">'čaká na zaplatenie'</span>, <span class="gd">'zaplatená'</span>, <span class="gd">'stornovaná'</span>)),
+    zakaznik_id <span class="ty">INT</span> <span class="kw">NOT NULL</span>,
+    <span class="kw">FOREIGN KEY</span> (zakaznik_id) <span class="kw">REFERENCES</span> zakaznik(id)
+);</div>
+
+<h2>Chybové hlášky — čo znamenajú</h2>
+<table>
+  <tr><th>Hláška</th><th>Porušené obmedzenie</th></tr>
+  <tr><td><code>Duplicate entry '…' for key 'email'</code></td><td>UNIQUE — hodnota sa už v stĺpci nachádza</td></tr>
+  <tr><td><code>CONSTRAINT `stav` failed</code></td><td>CHECK — hodnota nespĺňa podmienku stĺpca <code>stav</code></td></tr>
+  <tr><td><code>Out of range value for column 'id'</code></td><td>UNSIGNED — pokus o záporné číslo</td></tr>
+  <tr><td><code>Column 'meno' cannot be null</code></td><td>NOT NULL — chýba povinná hodnota</td></tr>
+  <tr><td><code>a foreign key constraint fails</code></td><td>FOREIGN KEY — odkaz na neexistujúci riadok</td></tr>
+</table>
+
+</div>
+</body>
+</html>

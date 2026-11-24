@@ -22,9 +22,7 @@ zameriame sa na **doménu** (čo do stĺpca smie a čo nie — a kde vznikajú c
 | 10 | Among Us         | Party   | 2018 | 8.0       | 3.99  | 2026-09-12 13:05   |
 
 **Entita** = „vec", o ktorej si vedieme údaje → tu **hra**.
-
 **Atribút** = vlastnosť = **stĺpec** (`nazov`, `zaner`, `rok`, `hodnotenie`, `cena`, `aktualizovane`, `id`).
-
 **Záznam = N-tica** = jeden riadok, napr. `(1, The Witcher 3, RPG, 2015, 9.3, 29.99, 2026-07-15 09:20)`.
 
 ## Doména — čo do stĺpca smie
@@ -34,7 +32,6 @@ dávajú **zmysel**. Pozor — dátový typ býva **širší** než doména: typ
 domény ceny `-5` nepatrí. Preto sa doména v praxi stráži **obmedzeniami** (o tých neskôr).
 
 Príklady domén v tabuľke `hry`:
-
 - `rok` → celé čísla, rozumne 1958–tento rok
 - `cena` → **nezáporné** desatinné čísla (0 a viac)
 - `hodnotenie` → čísla v rozsahu **0–10**
@@ -54,7 +51,6 @@ Preto sa ceny v praxi ukladajú ako **presný typ (DECIMAL)** alebo **v centoch 
 ale hodnota do domény **nepatrí**. Riešenie: povolené hodnoty držať v samostatnom zozname (číselníku).
 
 **4) Dátumy a časy.**
-
 - **Formát:** `03/04/2026` — je to 3. apríl alebo 4. marec? Nejednoznačné! Databázy používajú
   **ISO 8601: `RRRR-MM-DD`** (napr. `2026-04-03`), ktoré je jednoznačné a správne sa **zoraďuje**.
 - **Platnosť:** `2026-02-30` neexistuje; 31. apríl neexistuje; `29. február` je len v priestupných rokoch.
@@ -65,7 +61,6 @@ Keď server zapíše `12:00 UTC`, u nás je vtedy 13:00 (zima) alebo 14:00 (leto
 ukladá v **UTC** a používateľovi sa zobrazí v jeho pásme.
 
 ## Dáta vs. informácia
-
 *Dáta* = surové hodnoty (`29.99`). *Informácia* = zmysluplný výsledok z dát („najlacnejšia hra je
 Counter-Strike 2"). Reťazec: **dáta → dopyt → informácia.**
 
@@ -122,41 +117,25 @@ INSERT INTO hry VALUES
 ```
 
 ## Zopakuj si (SELECT z minula)
-
-**S1.** Vypíš celú tabuľku.  
-
-**S2.** Vypíš len **názvy a ceny**.  
-
-**S3.** Vypíš hry žánru **FPS**.
-
+**S1.** Vypíš celú tabuľku.  **S2.** Vypíš len **názvy a ceny**.  **S3.** Vypíš hry žánru **FPS**.
 **S4.** Zoraď hry **od najdrahšej**.
 
 ## Presnejšie filtrovanie
-
 **F1.** RPG hry vydané **po roku 2019**. *(`AND`)*
-
 **F2.** Hry, ktoré sú **zadarmo** (cena 0).
-
 **F3.** Hry s cenou **od 10 do 30 €** (vrátane). *(`BETWEEN`)*
-
 **F4.** Hry, ktoré sú **RPG alebo FPS**. *(`IN`)*
-
 **F5.** Hry, ktorých názov **začína na C**. *(`LIKE 'C%'`)*
-
 **F6.** Hry drahšie ako **40 € a zároveň** hodnotené **nad 9**.
 
 ## Práca s dátumom (nový stĺpec)
-
-**F7.** Hry **aktualizované po** `2026-08-01`. 
-
-**F8.** Zoraď hry **od najnovšie aktualizovanej**. 
-
-**F9. (rozmysli)** Skús `SELECT * FROM hry ORDER BY aktualizovane;` — zoradí sa dátum správne? Prečo áno? 
+**F7.** Hry **aktualizované po** `2026-08-01`. *(`WHERE aktualizovane > '2026-08-01'`)*
+**F8.** Zoraď hry **od najnovšie aktualizovanej**. *(`ORDER BY aktualizovane DESC`)*
+**F9. (rozmysli)** Skús `SELECT * FROM hry ORDER BY aktualizovane;` — zoradí sa dátum správne? Prečo áno? *(súvis s ISO formátom a doménou)*
 
 ---
 
 ## 🔜 Na zamyslenie do budúcej hodiny
 Žáner `RPG` sa v tabuľke **opakuje**. Čo keby sme si ku každému žánru chceli uložiť aj popis?
-
 Museli by sme ho písať znova pri každej hre… Preto databáza často potrebuje **viac prepojených
 tabuliek** — o tom bude ďalšia hodina.

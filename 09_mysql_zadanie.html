@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IRS — z diagramu do MySQL (zadanie)</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f8fafc; color: #1e293b; font-size: 20px; line-height: 1.7; }
+    nav { position: sticky; top: 0; background: #1e1b4b; color: white; display: flex; gap: .25rem; padding: .6rem 2rem; flex-wrap: wrap; z-index: 100; align-items: center; }
+    nav strong { color: white; margin-right: .5rem; }
+    nav a { color: #a5b4fc; text-decoration: none; font-size: .85rem; padding: .3rem .9rem; border-radius: .25rem; }
+    nav a:hover { background: #312e81; color: white; }
+    section { max-width: 980px; margin: 0 auto; padding: 3rem 2rem 2.5rem; border-bottom: 1px solid #e2e8f0; }
+    section:last-child { border-bottom: none; }
+    h1 { font-size: 2.2rem; color: #1e1b4b; margin-bottom: .5rem; }
+    h2 { font-size: 1.8rem; color: #312e81; margin-bottom: 1.2rem; padding-bottom: .5rem; border-bottom: 2px solid #e0e7ff; }
+    p  { margin-bottom: .85rem; }
+    ul, ol { margin: .5rem 0 .85rem 1.5rem; }
+    li { margin-bottom: .5rem; }
+    code { background: #e0e7ff; color: #3730a3; padding: .15rem .5rem; border-radius: .3rem; font-size: .88em; font-family: 'Cascadia Code', 'Fira Code', monospace; }
+    pre  { background: #0f172a; color: #e2e8f0; padding: 1rem 1.3rem; border-radius: .6rem; font-family: 'Cascadia Code', 'Fira Code', monospace; font-size: .85rem; overflow-x: auto; margin: .6rem 0 0; line-height: 1.5; }
+    .info  { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1rem 1.5rem; border-radius: 0 .5rem .5rem 0; margin: 1rem 0; }
+    .uloha { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 1.1rem 1.6rem; border-radius: 0 .75rem .75rem 0; margin: 1.2rem 0; }
+    .uloha h3 { margin-top:0; color:#15803d; font-size:1.2rem; }
+    .pozor { background: #fef2f2; border-left: 4px solid #ef4444; padding: 1rem 1.5rem; border-radius: 0 .5rem .5rem 0; margin: 1rem 0; }
+    .meno { color:#6b7280; font-size:.95rem; margin:1rem 0 0; }
+    .lin { color:#6b7280; border-bottom:1px solid #cbd5e1; display:inline-block; min-width:60%; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <strong>IRS · MySQL — zadanie</strong>
+  <a href="#ciel">Čo spravíš</a>
+  <a href="#u1">1 Spusti skript</a>
+  <a href="#u2">2 JOIN</a>
+  <a href="#u3">3 Integrita</a>
+  <a href="#u4">4 Pridaj</a>
+  <a href="#u5">5 Bonus</a>
+  <a href="#pl">Pracovný list</a>
+</nav>
+
+<section id="ciel">
+  <p style="color:#6b7280; font-size:.9rem; margin-bottom:.5rem">IRS · III.C · 1. skupina · zadanie</p>
+  <h1>Z diagramu do MySQL</h1>
+  <p style="color:#4338ca; font-size:1.1rem">V phpMyAdmin spustíš 4 tabuľky nášho modelu, naplníš ich a vyskúšaš, ako databáza stráži integritu.</p>
+  <p class="meno">Meno: ______________________  Trieda: ________</p>
+</section>
+
+<section id="u1">
+  <h2>1 · Spusti skript</h2>
+  <div class="uloha">
+    <h3>Úloha 1</h3>
+    <ul>
+      <li>Otvor phpMyAdmin → karta <strong>SQL</strong>.</li>
+      <li>Vlož obsah súboru <code>09_mysql_faktury.sql</code> a spusti (<strong>Vykonať</strong>).</li>
+      <li>Over v ľavom paneli: vznikli <strong>4 tabuľky</strong>? Vypíš ich názvy: <span class="lin">&nbsp;</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="u2">
+  <h2>2 · Poskladaj faktúru (JOIN)</h2>
+  <div class="uloha">
+    <h3>Úloha 2</h3>
+    <p>Spusti JOIN zo skriptu (časť <strong>3a</strong> — poskladá položky → faktúru → zákazníka).</p>
+    <ul>
+      <li>Koľko riadkov vrátil? <span class="lin">&nbsp;</span></li>
+      <li>Koľko je <strong>spolu</strong> za faktúru <code>2026002</code> (sčítaj stĺpec <code>spolu</code>)? <span class="lin">&nbsp;</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="u3">
+  <h2>3 · Skús porušiť integritu</h2>
+  <div class="uloha">
+    <h3>Úloha 3</h3>
+    <p>Spusti tento príkaz (položka na neexistujúcu faktúru 9999):</p>
+<pre>INSERT INTO faktura_polozka (faktura_id, polozka_cennika_id, mnozstvo)
+VALUES (9999, 1, 1);</pre>
+    <ul style="margin-top:.6rem">
+      <li>Čo databáza spravila — prijala, alebo odmietla? <span class="lin">&nbsp;</span></li>
+      <li>Odpíš chybovú hlášku: <span class="lin">&nbsp;</span></li>
+    </ul>
+  </div>
+  <div class="pozor"><strong>Zamysli sa:</strong> prečo je to lepšie ako v Exceli, kde by sa taký riadok bez problémov zapísal?</div>
+</section>
+
+<section id="u4">
+  <h2>4 · Pridaj vlastné údaje</h2>
+  <div class="uloha">
+    <h3>Úloha 4</h3>
+    <ul>
+      <li>Pridaj do cenníka nový tovar (napr. <code>e-shop</code> za 250 €).</li>
+      <li>Pridaj ho ako položku na faktúru <code>2026001</code> v množstve 1.</li>
+    </ul>
+<pre>INSERT INTO polozka_cennika (nazov, cena) VALUES ('e-shop', 250.00);
+INSERT INTO faktura_polozka (faktura_id, polozka_cennika_id, mnozstvo)
+VALUES (2026001, /* id nového tovaru */, 1);</pre>
+    <p style="margin-top:.6rem">Ako zistíš <code>id</code> nového tovaru? <span class="lin">&nbsp;</span></p>
+  </div>
+</section>
+
+<section id="u5">
+  <h2>5 · Bonus</h2>
+  <div class="uloha">
+    <h3>Úloha 5 (bonus)</h3>
+    <p>Napíš SELECT, ktorý vráti <strong>sumu za každú faktúru</strong> (jeden riadok na faktúru). Nápoveda: <code>GROUP BY</code> a <code>SUM(...)</code>.</p>
+  </div>
+</section>
+
+<section id="pl">
+  <h2>📝 Pracovný list</h2>
+  <div class="info">
+    <p style="margin-bottom:.3rem"><strong>Otvor MS Forms a vyplň pracovný list.</strong></p>
+    <p style="margin-bottom:0">Na konci odošli.</p>
+  </div>
+</section>
+
+</body>
+</html>

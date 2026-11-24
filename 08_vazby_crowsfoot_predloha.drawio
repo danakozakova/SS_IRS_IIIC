@@ -1,0 +1,17 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram name="ERD crow's foot — faktúry" id="erd-cf-faktury">
+    <mxGraphModel dx="900" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="826" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="zak" value="&lt;b&gt;zakaznik&lt;/b&gt;&lt;br&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;br&gt;&lt;u&gt;id&lt;/u&gt;  &lt;small&gt;PK&lt;/small&gt;&lt;br&gt;meno&lt;br&gt;email&lt;br&gt;adresa" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fillColor=#ffffff;strokeColor=#4338ca;fontColor=#1E293B;fontSize=13;" vertex="1" parent="1"><mxGeometry x="40" y="200" width="180" height="120" as="geometry"/></mxCell>
+        <mxCell id="fak" value="&lt;b&gt;faktura&lt;/b&gt;&lt;br&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;br&gt;&lt;u&gt;id&lt;/u&gt;  &lt;small&gt;PK&lt;/small&gt;&lt;br&gt;datum&lt;br&gt;stav&lt;br&gt;&lt;i&gt;zakaznik_id&lt;/i&gt;  &lt;small&gt;FK&lt;/small&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fillColor=#ffffff;strokeColor=#4338ca;fontColor=#1E293B;fontSize=13;" vertex="1" parent="1"><mxGeometry x="320" y="200" width="190" height="120" as="geometry"/></mxCell>
+        <mxCell id="fp" value="&lt;b&gt;faktura_polozka&lt;/b&gt;&lt;br&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;br&gt;&lt;u&gt;id&lt;/u&gt;  &lt;small&gt;PK&lt;/small&gt;&lt;br&gt;&lt;i&gt;faktura_id&lt;/i&gt;  &lt;small&gt;FK&lt;/small&gt;&lt;br&gt;&lt;i&gt;polozka_cennika_id&lt;/i&gt;  &lt;small&gt;FK&lt;/small&gt;&lt;br&gt;mnozstvo" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fillColor=#ffffff;strokeColor=#4338ca;fontColor=#1E293B;fontSize=13;" vertex="1" parent="1"><mxGeometry x="620" y="200" width="220" height="120" as="geometry"/></mxCell>
+        <mxCell id="pc" value="&lt;b&gt;polozka_cennika&lt;/b&gt;&lt;br&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;br&gt;&lt;u&gt;id&lt;/u&gt;  &lt;small&gt;PK&lt;/small&gt;&lt;br&gt;nazov&lt;br&gt;cena" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fillColor=#ffffff;strokeColor=#4338ca;fontColor=#1E293B;fontSize=13;" vertex="1" parent="1"><mxGeometry x="960" y="205" width="190" height="110" as="geometry"/></mxCell>
+        <mxCell id="e1" style="edgeStyle=entityRelationEdgeStyle;rounded=0;html=1;endArrow=ERmany;startArrow=ERone;strokeColor=#d97706;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="zak" target="fak"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" style="edgeStyle=entityRelationEdgeStyle;rounded=0;html=1;endArrow=ERmany;startArrow=ERone;strokeColor=#d97706;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="fak" target="fp"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" style="edgeStyle=entityRelationEdgeStyle;rounded=0;html=1;endArrow=ERmany;startArrow=ERone;strokeColor=#d97706;strokeWidth=2;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" edge="1" parent="1" source="pc" target="fp"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

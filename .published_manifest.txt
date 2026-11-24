@@ -1,0 +1,17 @@
+08_vazby_crowsfoot_predloha.drawio
+08_vazby_zadanie.html
+09_mysql_zadanie.html
+IRS_02_model-a-select_data.sql
+IRS_02_model-a-select_zadanie.md
+IRS_04_ciselnik-zanre_zadanie.md
+IRS_05_realne-tabulky_zadanie.html
+IRS_05_realne-tabulky_zadanie.md
+IRS_06_faktury_data.xlsx
+IRS_07_erd_chen_predloha.drawio
+IRS_07_erd_zadanie.html
+IRS_10_constraints_cheatsheet.html
+IRS_10_constraints_schema.sql
+demo-data.sql
+sql-pieskovisko.html
+sql-sandbox.html
+ulohy-zaci.md
